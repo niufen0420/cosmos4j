@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>diluonline.com</title>
+<link href="/css/dilu.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="/scripts/prototype-1.6.0.2.js"></script>
+<script type="text/javascript" language="javascript" src="/scripts/common.js"></script>
+<script type="text/javascript" language="javascript" src="/scripts/so.js"></script>
+<script type="text/javascript" language="javascript" src="/scripts/calendar.js"></script>
+</head>
+
+<body id="container">
+<p>亲爱的用户${user.name}，您好！</p>
+<p>
+的卢在线网站收到您的邮箱${user.email}注册为我们网站的用户，请点击<a href="http://www.diluonline.com:8000/system/user.dl?method=active&id=${user.id}&validateCode=${user.validateCode}" target="_blank">激活</a>，欢迎使用我们的服务。<br />
+<br />
+如果直接点击链接，没有效果，请复制下面的链接到地址栏，进行激活。<br />
+http://www.diluonline.com:8000/system/user.dl?method=active&id=${user.id}&validateCode=${user.validateCode}<br />
+<br />
+如果您没有使用此邮箱到我们网站注册，请忽略此邮件，真诚欢迎您访问我们的网站http://www.diluonline.com。<br />
+<br />
+谢谢！<br />
+<br />
+的卢在线（北京）咨询有限公司<br />
+咨询电话：86-10-51655733<br />
+咨询邮箱：info@diluonline.com<br />
+</p>
+</body>
+</html>

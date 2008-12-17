@@ -1,0 +1,10 @@
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS `cosmos`.`UUID32`$$
+
+CREATE DEFINER=`cosmos`@`%` FUNCTION `UUID32`() RETURNS char(32) CHARSET utf8
+BEGIN
+	return replace(UUID(),'-','');
+    END$$
+
+DELIMITER ;

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>COSMOS管理系统__后台管理</title>
+<style type="text/css">
+@import url(styles/manager_style.css);
+</style>
+<script type="text/javascript" src="scripts/layout.js"></script>
+</head>
+
+<body scroll="no" style="overflow: hidden">
+<!------------ModalDiv------------->
+<div id="disableDiv"></div>
+<div id="modalDiv" class="modalDivA">
+	<div id="modalTitle">
+		<div id="title"><span id="titleName">功能操作</span></div>
+		<a id="close" href="javascript:closeMockModal()" title="关闭"><img src="images/s.gif" /></a>
+	</div>
+	<div id="modalbody">
+		<iframe src="pages/regadmin/OrganizationDetail.html" id="modalIframe" name="modalIframe" scrolling="auto" style="overflow-y:auto " frameborder="0"></iframe>
+	</div>
+</div>
+<iframe id="HeaderIframe" name="HeaderIframe" frameborder="0" scrolling="no" src="pages/common/Header.jsp"></iframe>
+<table id="cent" width="100%" style="height:100%;">
+<tr style="height:100%;">
+  <td width="1" valign="top" id="frmTitle"><iframe id="LeftList" height="100%" name="LeftList" frameborder="0" scrolling="no" src="pages/common/navigator.jsp?id=1"></iframe></td>
+  <td valign="top" onclick="switchSysBar()" style="cursor:pointer;background:#4f91cd;"><img id="menu" src="images/ck.gif" /></td>
+  <td width="100%" valign="top">
+	<div id="TitMns" style="margin:0 0 5px 0;">
+	<table width="100%">
+	  <tr>
+		<td class="navTopSlt">
+			<table>
+			  <tr>
+				<td><span id="MainTitle1">后台管理系统</span></td>
+			  </tr>
+			</table>
+		</td>
+	  </tr>
+	</table>
+	</div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+		<td align="center" valign="top" id="td1" class="indexBG"><iframe src="pages/common/Building.html" style="overflow:visible;border:none; display:none" id="main" name="Main" scrolling="no" frameborder="0" width="100%" height="100%"></iframe></td>
+	  </tr>
+	</table></td>
+</tr>
+</table>
+
+</body>
+</html>
+
+<script language="javascript">
+function fixHeight(){
+try{
+    oTd1=document.getElementById("cent");
+	oTd2=document.getElementById("td1");
+	oTd3=document.getElementById("frmTitle");
+
+    oTd1.height=document.documentElement.clientHeight-100;
+	oTd2.height=document.documentElement.clientHeight-150;
+	oTd3.height=document.documentElement.clientHeight-120;
+
+}catch(e){
+//
+}
+}
+
+fixHeight();
+
+if (document.addEventListener)
+    window.addEventListener("resize", fixHeight, true);
+if (document.attachEvent)
+    window.attachEvent("onresize",fixHeight);
+</script>

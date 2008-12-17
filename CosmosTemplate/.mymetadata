@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="CosmosTemplate"
+  id="myeclipse.1205747385343"
+  context-root="/CosmosTemplate"
+  j2ee-spec="1.4"
+  archive="CosmosTemplate.war">
+  <attributes>
+    <attribute name="webrootdir" value="application" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,145 @@
+﻿COSMOS   配置一览
+一．	配置tomcat
+1.在tomcat的安装目录conf文件夹下，新建Catalina文件夹，在此文件夹下配置数据源，
+例：新建一个cosmos.com 的文件夹，在此文件夹下创建一个ROOT的XML文件，文件的内容为：
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true" crossContext="true" path=""
+	docBase="D:/workspace/Bims/application">
+	<Resource name="jdbc/project" auth="Container"
+		type="javax.sql.DataSource" driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost:3306/cosmos?useUnicode=true&amp;characterEncoding=utf8" username="cosmos" password="cosmos"
+		maxActive="20" maxIdle="10" maxWait="-1" />
+	<Logger className="org.apache.catalina.logger.FileLogger"
+		prefix="deviceMonitor_file_log." suffix=".log" timestamp="true" />
+	<Valve className="org.apache.catalina.valves.AccessLogValve"
+		prefix="cosmos_access_log." suffix=".log" pattern="common" />
+</Context>
+
+说明：jdbc/project为数据源的名称，与项目的web.xml和core-config.xml中配置的数据源同名, driverClassName为相应数据库的驱动包，url为相应数据库的地址和用户名、密码，其他不变。
+
+
+2.修改conf文件夹下的server.xml文件
+在Engine的标签下添加如下信息：（可同时配置多个）
+<Host name="bims.com"  appBase="D:/Web/bims"
+            unpackWARs="true" autoDeploy="true"
+            xmlValidation="false" xmlNamespaceAware="false">
+      </Host>
+说明：name=”bims.com”,其中bims.com和在Catalina下新建的文件夹同名，appBase="D:/Web/bims" 其中D:/Web/bims为在D盘下新建一个Web的文件夹，包括一个bims的空文件夹，（可以在任意地方新建）。
+
+3.修改系统目录windows/system32/drivers/etc/hosts,创建虚拟域名，服务启动以后，在地址栏里输入虚拟域名+8080即可
+如：http://www.cosmos.com:8080或http://www.bims.com:8080 若在server.xml里配置都个数据源的地址，则可随意切换。
+二．	项目的配置文件
+1.web.xml
+a.servlet-mapping
+	<servlet-mapping>
+		<servlet-name>coreServlet</servlet-name>
+		<url-pattern>/cosmos.slet</url-pattern>
+	</servlet-mapping>
+
+说明：对于不同模块可通过url-pattern来配置/cosmos.slet表示根目录
+
+b.数据源
+<web-app>
+ <resource-ref>
+    <res-ref-name>jdbc/bims</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+</web-app>
+
+说明：jdbc/bims与core-config.xml和root.xml的resource-name一致。
+
+2.core-config.xml
+
+a.配置数据源
+<datasources>		    
+	<datasource name="cosmos_ds_oracle"
+		class="com.jace.cosmos.core.integration.jdbc.JNDIDataSource">
+		<init-param name="bindingName" value="jdbc/bims" />
+	</datasource>
+</datasources>
+
+说明：cosmos_ds_oracle为数据源的名称（自定义的），jdbc/bims与web.xml和ROOT.XML里配的数据源名称一致。
+
+b.配置executers的loader(loader所有的executer)
+<executers reloadable="true" debug="true">
+	<loader	name="core"
+		class="com.jace.cosmos.core.impl.JaceCosmosExecuterLoaderImpl"
+		domain="cosmos_ds_oracle"/>			
+</executers>
+
+说明：core（自定义的），cosmos_ds_oracle 上面我们自定义的数据源名称一致。
+
+c.配置commands 的loader(loader所有的command)
+<commands reloadable="true" debug="true">
+	<loader	name="core"
+		 class="com.jace.cosmos.core.impl.JaceCosmosCommandLoaderImpl"
+		 domain="cosmos_ds_oracle"/>	
+	</commands>
+
+说明：core（自定义的），cosmos_ds_oracle 上面我们自定义的数据源名称一致。
+
+d.配置call-commands的loader(loader所有的存储过程)
+<call-commands reloadable="true" debug="true">
+	<loader name="cosmos_oracle"
+		class="com.jace.cosmos.core.integration.jdbc.loader.OracleCallableLoader"
+		domain="cosmos_ds_oracle"  scheme="COSMOS"/>
+	</call-commands>
+
+说明：core（自定义的），cosmos_ds_oracle 上面我们自定义的数据源名称一致,scheme是数据库名称。
+
+
+
+三.    系统基本表
+1.tb_sys_command    用于存储开发人员自定义的sql语句。 
+2.tb_sys_command_arg    用于存储开发人员自定义的sql语句的参数列表。
+3.tb_sys_executer    用于存储开发人员自定义的executer执行器。
+4.必须有一个SP_MYSQL_COSMOS_LOADER的存储过程<mysql>
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `cosmos`.`SP_MYSQL_COSMOS_LOADER`$$
+
+CREATE DEFINER=`cosmos`@`%` PROCEDURE `SP_MYSQL_COSMOS_LOADER`()
+BEGIN
+select type,name,FN_MYSQL_COSMOS_ARGLIST(returns,param_list) as argList from mysql.proc where db='cosmos' order by type;
+END$$
+
+DELIMITER ;
+5.4.必须有一个FN_MYSQL_COSMOS_ARGLIST的函数<mysql>
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS `cosmos`.`FN_MYSQL_COSMOS_ARGLIST`$$
+
+CREATE DEFINER=`cosmos`@`%` FUNCTION `FN_MYSQL_COSMOS_ARGLIST`(fnReturn varchar(64),argList blob ) RETURNS varchar(1024) CHARSET utf8
+BEGIN
+    set @result = '';
+    IF ( fnReturn != '' ) then
+        set @result = concat('OUT ',fnReturn);
+        set @result = concat(@result,','); 
+        set @result = concat(@result,argList);  
+    ELSE
+        set @result = argList;  
+    END IF;
+    return @result;
+END$$
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
