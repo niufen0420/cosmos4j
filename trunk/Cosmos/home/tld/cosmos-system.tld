@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<description>Jace permission library</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>permission</short-name>
+	<uri>http://www.microbrain.com/cosmos/system</uri>
+	<tag>
+		<name>domains</name>
+		<tag-class>
+			com.microbrain.cosmos.web.tags.system.DomainTag
+		</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>commands</name>
+		<tag-class>
+			com.microbrain.cosmos.web.tags.system.CommandTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>commands</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>treeVar</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>begin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>end</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>step</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>info</name>
+		<tag-class>
+			com.jace.cosmos.web.tags.permission.PermissionTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>object</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>operation</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>permission</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<function>
+		<description>Get Domains</description>
+		<name>domains</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection domains()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Executers</description>
+		<name>executers</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection executers()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Executers From Domain</description>
+		<name>domainExecuters</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection executers(java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Converters</description>
+		<name>converters</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection converters()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Command Types</description>
+		<name>commandTypes</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection commandTypes()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Commands</description>
+		<name>commands</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection commands()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Commands From Domain</description>
+		<name>domainCommands</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection commands(java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Global Commands</description>
+		<name>globalCommands</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection globalCommands()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Global Commands From Domain</description>
+		<name>domainGlobalCommands</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection globalCommands(java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Local Commands</description>
+		<name>localCommands</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection localCommands()
+		</function-signature>
+	</function>
+	<function>
+		<description>Get Local Commands From Domain</description>
+		<name>domainLocalCommands</name>
+		<function-class>
+			com.microbrain.cosmos.web.el.system.SystemUtil
+		</function-class>
+		<function-signature>
+			java.util.Collection localCommands(java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>Check permission</description>
+		<name>check</name>
+		<function-class>
+			com.jace.cosmos.web.el.permission.PermissionUtil
+		</function-class>
+		<function-signature>
+			java.lang.Boolean check(com.jace.system.logic.auth.Authorization, java.lang.String, java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>Check permission</description>
+		<name>checkMethod</name>
+		<function-class>
+			com.jace.cosmos.web.el.permission.PermissionUtil
+		</function-class>
+		<function-signature>
+			java.lang.Boolean check(com.jace.system.logic.auth.Authorization, java.lang.reflect.Method)
+		</function-signature>
+	</function>
+</taglib>

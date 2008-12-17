@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core>
+	<cosmos factory="com.microbrain.cosmos.core.factory.DefaultCosmosFactoryImpl"
+		configuration="com.microbrain.cosmos.core.config.DefaultConfigurationImpl">
+		<authentication
+			factory="com.microbrain.cosmos.core.auth.AuthorizationFactoryImpl"
+			token="com.microbrain.cosmos.core.auth.Authorization">
+			<init-param name="domain" value="direct" />
+			<init-param name="command" value="login" />
+		</authentication>
+		<permission
+			factory="com.microbrain.cosmos.core.permission.PermissionFactoryImpl"
+			class="com.microbrain.cosmos.core.permission.DefaultJacePermission">
+			<init-param name="needed" value="direct.needed" />
+			<init-param name="owned" value="direct.owned" />
+		</permission>
+		<converters>
+			<converter name="bigdecimal" label="BigDecimal大整形"
+				class="com.microbrain.cosmos.core.command.converters.BigDecimalConverter"
+				debug="info">
+				<jdbc-type value="3" />
+				<init-param name="format" value="##.##" />
+			</converter>
+			<converter name="boolean" label="Boolean"
+				class="com.microbrain.cosmos.core.command.converters.BooleanConverter"
+				debug="info">
+				<jdbc-type value="-7" />
+			</converter>
+			<converter name="bytearray" label="字节数组"
+				class="com.microbrain.cosmos.core.command.converters.ByteArrayConverter"
+				debug="info">
+				<jdbc-type value="-2" />
+				<jdbc-type value="-3" />
+				<jdbc-type value="-4" />
+			</converter>
+			<converter name="date" label="日期"
+				class="com.microbrain.cosmos.core.command.converters.DateConverter"
+				debug="info">
+				<jdbc-type value="91" />
+			</converter>
+			<converter name="double" label="Double双精度型"
+				class="com.microbrain.cosmos.core.command.converters.DoubleConverter"
+				debug="info">
+				<jdbc-type value="8" />
+			</converter>
+			<converter name="float" label="Float浮点型"
+				class="com.microbrain.cosmos.core.command.converters.FloatConverter"
+				debug="info">
+				<jdbc-type value="7" />
+			</converter>
+			<converter name="integer" label="Integer整型"
+				class="com.microbrain.cosmos.core.command.converters.IntegerConverter"
+				debug="info">
+				<jdbc-type value="-6" />
+				<jdbc-type value="5" />
+				<jdbc-type value="4" />
+			</converter>
+			<converter name="long" label="Long长整型"
+				class="com.microbrain.cosmos.core.command.converters.LongConverter"
+				debug="info">
+				<jdbc-type value="-5" />
+			</converter>
+			<converter name="string" label="String字符串"
+				class="com.microbrain.cosmos.core.command.converters.StringConverter"
+				debug="info">
+				<jdbc-type value="1" />
+				<jdbc-type value="12" />
+				<jdbc-type value="-1" />
+			</converter>
+			<converter name="time" label="Time时间类型"
+				class="com.microbrain.cosmos.core.command.converters.TimeConverter"
+				debug="info">
+				<jdbc-type value="92" />
+			</converter>
+			<converter name="timestamp" label="TimeStamp时间戳型"
+				class="com.microbrain.cosmos.core.command.converters.TimeStampConverter"
+				debug="info">
+				<jdbc-type value="93" />
+			</converter>
+		</converters>
+		<command-types>
+			<command-type name="standard" label="标准原子指令"
+				class="com.microbrain.cosmos.core.command.StandardCosmosCommand"
+				composite="false" default="true"><![CDATA[标准的原子指令。]]></command-type>
+			<command-type name="sequence" label="顺序执行的组合指令"
+				class="com.microbrain.cosmos.core.command.composite.SequenceCosmosCommand"
+				composite="true" default="false"><![CDATA[顺序执行的组合指令。]]></command-type>
+			<command-type name="if" label="带有条件判断的组合指令"
+				class="com.microbrain.cosmos.core.command.composite.IfCosmosCommand"
+				composite="true" default="false"><![CDATA[带有条件的判断执行组合指令。]]></command-type>
+		</command-types>
+		<executers>
+			<executer name="sqlExecuter"
+				class="com.microbrain.cosmos.core.command.db.CosmosSqlExecuter"
+				label="Select语句执行器" category="db"><![CDATA[能执行各种不带事务的查询语句。]]></executer>
+			<executer name="callExecuter"
+				class="com.microbrain.cosmos.core.command.db.CosmosCallExecuter"
+				label="存储过程执行器" category="db"><![CDATA[能执行各种存储过程。]]></executer>
+			<executer name="uploadExecuter"
+				class="com.microbrain.cosmos.web.executers.CosmosUploadFileExecuter"
+				label="上传文件执行器" category="db"><![CDATA[能执行上传文件。]]></executer>
+		</executers>
+		<domains>
+			<domain name="config" category="db"
+				class="com.microbrain.cosmos.core.domain.config.CosmosConfigurationDomain"
+				type="slave" cachable="true" reloadable="false" debug="INFO">
+			</domain>
+			<domain name="direct" category="db"
+				class="com.microbrain.cosmos.core.domain.db.mysql.CosmosMysqlDirectDomain"
+				type="master" cachable="true" reloadable="false" debug="INFO">
+				<init-param name="driver" value="com.mysql.jdbc.Driver" />
+				<init-param name="url"
+					value="jdbc:mysql://localhost:3306/cosmos?useUnicode=true" />
+				<init-param name="user" value="cosmos" />
+				<init-param name="password" value="cosmos" />
+				<init-param name="schema" value="cosmos" />
+				<init-param name="default-call-executer" value="callExecuter" />
+				<init-param name="command-manager"
+					value="com.microbrain.cosmos.dev.StandardCosmosCommandManager" />
+				<commands>
+					<command name="select_command" executer="sqlExecuter"
+						debug="INFO" type="standard">
+						<argument name="dom" in-out-type="IN" converter="string" />
+						<![CDATA[SELECT ID,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME,NAME FROM tb_cos_command WHERE DOMAIN = ?]]>
+						<remark><![CDATA[查询某个Domain下的所有命令]]></remark>
+					</command>
+					<command name="login" executer="sqlExecuter" debug="INFO"
+						type="standard">
+						<argument name="name" in-out-type="IN" converter="string" />
+						<argument name="service" converter="string" />
+						<![CDATA[SELECT ID, PASSWORD FROM tb_sys_user WHERE NAME = ? AND TYPE = ?]]>
+					</command>
+					<command name="needed" executer="sqlExecuter" debug="INFO"
+						type="standard">
+						<argument name="object" in-out-type="IN" converter="string" />
+						<argument name="operation" converter="string" />
+						<![CDATA[SELECT permission.PERMISSION_CODE FROM tb_sys_permission AS permission WHERE permission.OBJECT=? AND permission.OPERATION=?]]>
+					</command>
+					<command name="owned" executer="sqlExecuter" debug="INFO"
+						type="standard">
+						<argument name="passportId" in-out-type="IN" converter="string" />
+						<argument name="passportId" converter="string" />
+						<![CDATA[SELECT permission.OBJECT, permission.OPERATION, permission.PERMISSION_CODE	FROM tb_sys_permission AS permission
+							LEFT JOIN tb_sys_user_permission AS up ON up.PERMISSION_ID=permission.ID
+							LEFT JOIN tb_sys_role_permission AS rp ON rp.PERMISSION_ID=permission.ID
+							LEFT JOIN tb_sys_user_role AS ur ON ur.ROLE_ID=rp.ROLE_ID
+							WHERE up.USER_ID=? OR ur.USER_ID=?]]>
+					</command>
+				</commands>
+			</domain>
+		</domains>
+	</cosmos>
+</core>
