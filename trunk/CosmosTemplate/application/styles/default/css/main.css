@@ -1,0 +1,592 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	font:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin: 0px;
+	padding: 0px;
+}
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+#hm {
+	width: 100%;
+	height: 120px;
+	background: #fff;
+}
+#hm #header {
+	height:80px;
+	background:#80919A url(../images/HeaderBGx.jpg) repeat-x top;
+}
+#hm #header .logo {
+	height:80px;
+	background:url(../images/headerBG.jpg) no-repeat top left;
+}
+#hm #menu {
+	width: auto;
+	height: 30px;
+	background: #687C87 url(../images/menubg.gif) repeat-x top;
+	padding: 0 0 0 10px;
+}
+#bar {
+	height: 30px;
+	display: inherit;
+}
+#bar li {
+	float: left;
+	padding: 4px 11px 5px 11px;
+	line-height: 21px;
+	text-decoration: none;
+	background: url("../images/MenuLine.gif") right top no-repeat;
+}
+#bar a {
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+#bar a:hover {
+	color: #FFEB85;
+}
+.menuOn {
+	padding: 5px 5px 8px 5px;
+	padding-bottom: 10px !important;
+	background: #FFFFFF url("../images/MenuBTBG.gif") repeat-x top;
+	border: solid 1px #425865;
+	border-bottom: none;
+	font-weight: bold;
+	color: #000;
+}
+.menuOff {
+}
+.itemOn {
+	background: url("../images/LeftMenuT.gif") right center no-repeat #D2DBE4;
+	padding: 3px 8px 0 2px;
+	border-right: solid 1px #687C87;
+}
+.itemOff {
+}
+#mc #navigator {
+	width: 173px;
+	height: 500px;
+	padding: 5px 2px 5px 5px;
+	background: #e3f2ff;
+	float: left;
+	border-top: solid 1px #4f91cd;
+}
+#mc #navigator .frame {
+	position: relative;
+	height: 490px;
+	background: #fff;
+	width: 168px;
+	border: solid 1px #9BAAB2;
+}
+#mc #navigator .frame .navTop {
+	background: url(../images/navT.gif) no-repeat;
+	height: 23px;
+	padding-left: 5px;
+	font-weight: bold;
+	padding-top: 1px;
+	width: 160px;
+	line-height: 21px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.navBar ul.navMenu {
+	padding:0 0 0 5px;
+	margin:0 0 5px 20px;
+}
+.navBar ul.navMenu li.navParent {
+	cursor: pointer;
+	font-weight: normal;
+	list-style-image: url("../images/fold.gif");
+	line-height: 21px;
+}
+.navBar ul.navMenu ul.navChild {
+	display: none;
+	cursor: default;
+	list-style-image: url("../images/list.gif");
+	line-height: 21px;
+	padding: 0 0 0 5px;
+	margin:0 0 0 5px;
+}
+.navBar ul.navMenu ul.navChild a {
+	text-decoration: none;
+	font-weight: normal;
+	line-height: 21px;
+	color: #000;
+}
+.navBar ul.navMenu ul.navChild a:hover {
+	text-decoration:underline;
+}
+.navBar ul.navMenu li.navLi {
+	list-style: url("../images/li.gif");
+	line-height: 20px;
+}
+.navBar ul.navMenu li.navLi a {
+	text-decoration: none;
+	font-weight: normal;
+	color: #000;
+}
+.navBar ul.navMenu li.navLi a:hover {
+	text-decoration:underline;
+}
+#mc #navigator .frame .navBottom {
+	position: absolute;
+	bottom: 0px;
+}
+.navBottom ul {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+.navBottom ul li a {
+	display: block;
+	padding:6px 0 1px 15px;
+	background: url(../images/navA.gif) #C2CDD9 no-repeat;
+	width: 153px !important;
+	color: #000;
+	text-decoration: none;
+}
+.navBottom ul li a.active {
+	background: url(../images/navH.gif) #FFC012 no-repeat;
+	color: #000000;
+}
+.navBottom ul li a:hover {
+	background: url(../images/navO.gif) #FFC012 no-repeat;
+	color: #000000;
+}
+.navBottom ul li a.active:hover {
+	background: url(../images/navO.gif) #FFC012 no-repeat;
+}
+#mc #control {
+	cursor: pointer;
+	background: #4f91cd;
+	float: left;
+	height: 510px;
+}
+#mc #main {
+	min-height: 400px;
+	height: 510px;
+	width: 780px;
+	float: left;
+}
+#mc #main .mainBar {
+	padding:0 10px;
+	margin:0 0 5px 0;
+}
+#mc #main .mainBar .mainSub {
+	background: #FFF url(../images/navTopBG.gif) no-repeat;
+	border: none;
+	height: 25px;
+}
+#mc #main .mainBar .mainSub span {
+	float: left;
+	color: #506977;
+	font-weight: bold;
+	border: solid 1px #506977;
+	border-bottom: none;
+	background: #FFF url(../images/navTopBT.gif) repeat-x top;
+	margin: 2px 0 0 10px;
+	padding: 4px 8px 2px 8px;
+	line-height: 16px;
+}
+#mc #main .mainBar .mainSub div {
+	float: right;
+	color: #C00;
+	width: 450px;
+	padding: 5px 0 0 0;
+	text-align: right;
+	white-space: nowrap;
+}
+#mc #main .indexBg {
+	background:url(../images/bg.jpg) no-repeat right bottom;
+	padding-left: 20px;
+}
+#mc #main #mainContent {
+	display: none;
+	overflow: visible;
+	border: none;
+	width: 95%;
+	height: 100%;
+}
+/*  right main */
+#listContent {
+	text-align: center;
+	border: solid 1px #506977;
+	height: 417px;
+}
+#listContent h1 {
+	text-align: left;
+	height: 20px;
+	margin: 0;
+	background: #D0DBE4 url(../images/titleBG.gif) repeat-x;
+	border-bottom: solid 1px #506977;
+}
+#listContent span {
+	padding: 5px 0 0 15px;
+	line-height: 150%;
+	background: url(../images/titleT.gif) 1px 0 no-repeat;
+}
+#listContent div.main {
+	margin: 4px;
+	height: 351px;
+	border: solid 1px #CCC;
+}
+#listContent #tab {
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin: 0 10px 0 10px;
+	padding: 1px 1px 1px 1px;
+	height: 388px;
+}
+#listContent div.primary {
+	margin: 4px;
+	height: 154px;
+	padding: 0 0 4px 0;
+	border-bottom: solid 1px #506977;
+}
+#listContent div.secondary {
+	margin: 4px;
+	height: 190px;
+}
+/*----------ToolBar Layout------------*/
+.toolBar {
+	clear: both;
+	height: 20px;
+	padding: 4px 0;
+	margin: 5px 10px 5px 10px;
+	border: solid 1px #BDCCD3;
+	background: #ECEFF1;
+}
+.toolBar .left {
+	text-align: left;
+	width: 48%;
+	float: left;
+}
+.toolBar .right {
+	text-align: right;
+	width: 48%;
+	float: right;
+	text-align: right;
+	vertical-align: middle;
+}
+.toolBar a {
+	color: #000;
+	text-decoration: none;
+	line-height: 23px;
+	margin-right: 5px;
+}
+.toolBar a:hover {
+	text-decoration: underline;
+}
+#top {
+}
+#bottom {
+	bottom: 0;
+}
+/*----- modal dialog -----*/
+#mask {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.3;
+	filter: alpha(style=0, opacity=30);
+	z-index: 100;
+}
+#modalDiv {
+	border: solid 1px #506977;
+	background: #F6FAFE;
+	position: absolute;
+	width: 400px;
+	height: 500px;
+	z-index: 999;
+}
+#modalDiv .modalTitle {
+	height: 30px;
+	background: url(../images/modaltitleBG.gif) repeat-x top;
+}
+#modalDiv .modalTitle #title {
+	float: left;
+	text-align: left;
+	background: url(../images/modaltitleIco.gif) no-repeat 7px 1px;
+	padding: 0 0 0 38px;
+	font-weight:bold;
+	line-height:30px;
+}
+#modalDiv .modalTitle .close {
+	display: block;
+	float: right;
+	width: 30px;
+	height: 30px;
+	background: url(../images/modalClose.gif) no-repeat;
+}
+#modalDiv #modalContent {
+	height: 462px;
+	width: 384px;
+	margin: 0 8px 8px 8px;
+}
+#modalDiv #modalIframe {
+	overflow: auto;
+	border: solid 1px #BDCCD3;
+	background: #FFF;
+	width: 100%;
+	height: 100%;
+}
+/*  Table css */
+table {
+	border-collapse: collapse;
+	padding: 4px 0;
+}
+td, th {
+	color: #000;
+	padding: 0;
+	white-space: nowrap;
+}
+th {
+	background: #FFF;
+}
+table.defaultList {
+	width: 100%;
+	border: solid 1px #9BAAB2;
+}
+table.defaultList tr:hover {
+	background: #FFFACE;
+}
+table.defaultList .down {
+	background: #FFF7AF;
+}
+table.defaultList td, th {
+	border: solid 1px #CCC;
+	padding: 5px 4px 2px 4px;
+	text-align: left;
+	line-height: 100%;
+}
+table.defaultList td img {
+	float: left;
+}
+table.defaultList th {
+	background: #EDF0F3 url(../images/tableThBG.gif) repeat-x bottom;
+	padding: 5px 4px 4px 4px;
+	text-align: center;
+}
+/*-----------Default style--------------*/
+input, textarea {
+	background: #FFF url(../images/inputBG.gif) left top no-repeat;
+	border: solid 1px #7F9DB9;
+	height: 17px;
+	line-height: 140%;
+}
+/*------Form hover style-----*/
+input[type="text"]:hover,input[type="password"]:hover,textarea:hover {
+	border: solid 1px #506977;
+	background: url(../images/inputBG.gif) left top no-repeat;
+}
+/*-----------OnFocus style------------*/
+input.down, textarea.down {
+	width: 200px;
+	margin: 2px 0;
+	border: dashed 1px #DD0A0A;
+	background: #FFFAE2 url(../images/inputBG.gif) left top no-repeat;
+}
+input.downS, textarea.downS {
+	width: 30px;
+	margin: 2px 5px 2px 0;
+	border: dashed 1px #DD0A0A;
+	background: #FFFAE2 url(../images/inputBG.gif) left top no-repeat;
+}
+input.downGo, textarea.downGo {
+	width: 182px;
+	margin: 2px 0;
+	border: dashed 1px #DD0A0A;
+	border-right: solid 1px #7F9DB9;
+	background: #FFFAE2 url(../images/inputBG.gif) left top no-repeat;
+}
+/*-----------Readonly-------------*/
+input[readonly], textarea[readonly] {
+	margin: 2px 0;
+	border: solid 1px #CCC;
+	background: #FCFCFC;
+}
+.readonly {
+	width: 200px;
+	margin: 2px 0;
+	border: solid 1px #CCC;
+	background: #FCFCFC;
+}
+.readonlyS {
+	width: 30px;
+	margin: 2px 5px 2px 0;
+	border: solid 1px #CCC;
+	background: #FCFCFC;
+}
+/*-----------Button-------------*/
+button {
+	color: #FFF;
+	height: 20px;
+	padding: 3px 2px 0px 2px;
+	margin: 0 4px;
+	line-height: 100%;
+	cursor: pointer;
+	border-top: solid 1px #93A4AE;
+	border-left: solid 1px #93A4AE;
+	border-right: solid 1px #778993;
+	border-bottom: solid 1px #778993;
+	background: #778993;
+}
+input[type="submit"],input[type="reset"] {
+	color: #FFF;
+	width: 70px;
+	text-align: left;
+	height: 20px;
+	padding: 3px 2px 0 5px;
+	margin: 0 4px;
+	line-height: 100%;
+	cursor: pointer;
+	border-top: solid 1px #93A4AE;
+	border-left: solid 1px #93A4AE;
+	border-right: solid 1px #778993;
+	border-bottom: solid 1px #778993;
+	background: #778993;
+}
+input.ButSub {
+	color: #FFF;
+	width: 65px;
+	text-align: left;
+	height: 20px;
+	padding: 3px 2px 0 6px;
+	margin: 0 4px;
+	line-height: 100%;
+	cursor: pointer;
+	border-top: solid 1px #93A4AE;
+	border-left: solid 1px #93A4AE;
+	border-right: solid 1px #778993;
+	border-bottom: solid 1px #778993;
+	background: #778993;
+}
+button.ButSub {
+	text-align: left;
+	color: #FFF;
+	width: 65px;
+	height: 20px;
+	padding: 1px 2px 0 6px;
+	margin: 0 4px;
+	line-height: 100%;
+	cursor: pointer;
+	border-top: solid 1px #93A4AE;
+	border-left: solid 1px #93A4AE;
+	border-right: solid 1px #778993;
+	border-bottom: solid 1px #778993;
+	background: #778993;
+}
+button.ButSubR {
+	position: absolute;
+	top: 8px;
+	right: 5px;
+	text-align: left;
+	color: #FFF;
+	width: 60px;
+	height: 21px;
+	padding: 2px 2px 0 6px;
+	margin: 0 4px;
+	line-height: 100%;
+	cursor: pointer;
+	border-top: solid 1px #93A4AE;
+	border-left: solid 1px #93A4AE;
+	border-right: solid 1px #778993;
+	border-bottom: solid 1px #778993;
+	background: #778993;
+}
+/*-----------Layout Width-------------*/
+.input {
+	width: 200px;
+	margin: 2px 0;
+}
+.inputGo {
+	width: 182px;
+	margin: 2px 0;
+}
+.select {
+	width: 204px;
+	margin: 2px 0;
+}
+.textarea {
+	width: 200px;
+	margin: 2px 0;
+}
+.inputS {
+	width: 30px;
+	margin: 2px 5px 2px 0;
+}
+/*-----------Form Layout-------------*/
+.detail {
+	margin: 10px 0;
+}
+.detail label {
+	float: left;
+	text-align: right;
+	height: 17px;
+	width: 160px;
+	padding: 5px 10px 0 0;
+}
+.detail label span {
+	color: #C00;
+	font-size: 12px;
+	line-height: 5px;
+}
+.detail input[type="text"], .detail input[type="password"], .detail select, .detail textarea {
+	margin:2px 0;
+}
+.detail textarea {
+	height:80px;
+}
+button.go {
+	width: 18px;
+	height: 21px;
+	background: url(../images/go.gif) no-repeat;
+	padding: 0;
+	margin: 2px 0;
+	border: none;
+}
+button.go:hover {
+	background:url(../images/go.gif) no-repeat bottom;
+}
+/*---Form Layout checkbox---*/
+.detail ul {
+	width: 200px;
+	margin: 0;
+}
+.detail li {
+	float: left;
+	display: block;
+}
+.detail ul label {
+	padding: 0;
+}
+.detail ul input {
+	border: none;
+	background: none;
+	width: 14px;
+	height: 14px;
+}
+.controlBar {
+	background: #F5F7F8;
+	border: solid 1px #CCC;
+	margin: 0 0 4px 0;
+	padding: 4px;
+}
+.controlBar label {
+	width: 150px;
+	font-size: 12px;
+	height: 21px;
+}
+.controlBar input[type="text"], .controlBar input[type="password"], .controlBar select, .controlBar textarea {
+	width: 150px;
+	margin: 2px 0;
+}
